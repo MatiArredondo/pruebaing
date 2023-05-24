@@ -1,0 +1,44 @@
+<% if user_signed_in? %>
+
+  <p style="color: green"><%= notice %></p>
+  <% if current_user.id == @chat.id_user || current_user.admin? || current_user.id == @chat.moderator_id %>
+    <div class="content is-center has-text-centered is-size-6">
+      <h1>Chat</h1>
+    </div>
+    <div id="chat" class="box" style="height: 500px; overflow-y: auto;">
+      <% @messages.each do |message| %>
+        <%usuario = User.find(message.id_user)%>
+        <%if usuario.admin? || usuario.moderator?%>
+          <article class="message is-danger is-medium">
+            <div class="message-body">
+              <%= message.content %>
+            </div>
+          </article>
+        <% else %>
+          <article class="message is-medium">
+            <div class="message-body">
+              <%= message.content %>
+            </div>
+          </article>
+        <% end %>
+      <% end %>
+    </div>
+    <%if current_user.admin? == false%>
+      <form action="/messages" method="post" style="display: flex; align-items: center;">
+        <div style="flex: 1;">
+          <input type="hidden" name="message[name]" value="<%= current_user.name %>: ">
+          <input class="input is-rounded" type="text" placeholder="Escriba su mensaje" name="message[content]">
+          <input type="hidden" name="message[id_chat]" value="<%= @chat.id %>">
+          <input type="hidden" name="message[id_user]" value="<%= current_user.id %>">
+        </div>
+        <div>
+          <button class="button is-link" type="submit">Enviar</button>
+        </div>
+      </form>
+    <%end%>
+  <%end%>
+
+<% else %>
+    <meta http-equiv="refresh" content="0; url=/">
+
+<% end %>

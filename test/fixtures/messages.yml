@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+mes_1:
+  content:
+  id_chat: 2
+  id_user: 1
+
+mes_2:
+  content: Este es un mensaje de prueba
+  id_chat:
+  id_user: 1
+
+mes_3:
+  content: Este es un mensaje de prueba
+  id_chat: 1
+  id_user: 1
+
+mes_4:
+  content: Este es un mensaje de prueba
+  id_chat: 1
+  id_user:

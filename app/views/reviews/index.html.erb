@@ -1,0 +1,46 @@
+<% if user_signed_in? %>
+
+  <p style="color: green"><%= notice %></p>
+
+  <div id="reviews">
+
+	<div class="content is-center has-text-centered is-size-5 mt-5">
+		<h1> Nuevo Producto </h1>
+	</div>
+
+		<table class="styled-table">
+			<thead>
+			<tr>
+				<th style="width: 25%;">Producto</th>
+				<th style="width: 35%;">Opinion</th>
+				<th style="width: 20%;">Calificacion</th>
+				<th style="width: 20%;">Fecha</th>
+			</tr>
+			</thead>
+			<tbody>
+			<% @reviews.each do |review| %>
+				<% if review.id_product == -1%>
+				<tr>
+					<td><%= "Pagina" %></td>
+					<td><%= review.content %></td>
+					<td><%= review.grade %></td>
+					<td><%= review.created_at.strftime("%d/%m/%Y") %></td>
+				</tr>
+				<% else%>
+				<% product = Product.find_by(id: review.id_product) %>
+				<tr>
+					<td><%= product.name %></td>
+					<td><%= review.content %></td>
+					<td><%= review.grade %></td>
+					<td><%= review.created_at.strftime("%d/%m/%Y") %></td>
+				</tr>
+				<% end%>
+			<% end %>
+			</tbody>
+		</table>
+  </div>
+
+<% else %>
+  	<p> No has iniciado sesión </p>
+
+<% end %>

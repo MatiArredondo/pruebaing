@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+prod_1:
+  name: Producto de Prueba
+  price: 14990
+  image:
+  id_user: 1
+
+prod_2:
+  name: Producto de Prueba
+  price:
+  image: HTTP#33324
+  id_user: 1
+
+
+prod_3:
+  name:
+  price: 14990
+  image: HTTP#33324
+  id_user: 1
+
+
+prod_4:
+  name: Producto de Prueba
+  price: 14990
+  image: HTTP#33324
+  id_user: 1
+
+prod_5:
+  name: Producto de Prueba
+  price: 14990
+  image: HTTP#33324
+  id_user:

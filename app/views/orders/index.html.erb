@@ -1,0 +1,64 @@
+<% if user_signed_in? %>
+
+	<div class="content is-center has-text-centered is-size-5 mt-5">
+		<h2>Reservas</h2>
+	</div>
+
+	<div class="box mx-6 my-5 is-align-self-center">
+		<div class="table-container is-flex is-justify-content-center">
+			<table class="table is-fullwidth is-centered">
+				<thead>
+					<tr>
+					<th>Imagen</th>
+					<th>Producto</th>
+					<th>Precio</th>
+					<th>Status</th>
+					<td></td>
+					<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					<% @orders.each do |order| %>
+					<% product = Product.find_by(id: order.id_product) %>
+					<tr>
+						<td>
+							<% if product.image.attached? %>
+
+								<figure class="image is-96x96">
+									<%= image_tag product.image, class:"is-96x96 has-background-white" %>
+								</figure>
+
+							<% else %>
+
+								<figure class="image is-96x96">
+									<i class="fa-thin fa-image"></i>
+								</figure>
+
+							<% end %>
+						</td>
+						<td><%= product.name %></td>
+						<td><%= product.price %></td>
+						<td><%= order.status %></td>
+
+						<div class="is-flex is-justify-content-center mt-5">
+							<div class="buttons">
+
+								<td><%= button_to "Aceptar", order_path(order), method: :patch, params: { order: { status: "Aceptada" } }, class: "button is-primary" %></td>
+								<td><%= button_to "Rechazar", order_path(order), data: { confirm: '¿Está seguro que desea eliminar la orden?' }, method: :delete, class: "button is-danger" %></td>
+
+							</div>
+						</div>
+
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+<% else %>
+  	<div class="box mx-6 my-6 is-align-self-center">
+		<p> No has iniciado sesión <p>
+	</div>
+
+<% end %>

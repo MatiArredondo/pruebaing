@@ -1,0 +1,64 @@
+<% if user_signed_in? %>
+
+    <div class="content is-center has-text-centered is-size-5 mt-5">
+        <h2>Reseñas</h2>
+    </div>
+
+    <p style="color: green"><%= notice %></p>
+
+    <% if !@reviews.nil? %>
+
+        <div class="box mx-6 my-5 is-align-self-center">
+		    <div class="table-container is-flex is-justify-content-center">
+
+                <table class="table is-fullwidth is-centered">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Opinion</th>
+                            <th>Calificacion</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% @reviews.each do |review| %>
+                            <tr>
+                                <td><%= review.content %></td>
+                                <td><%= review.grade %></td>
+                                <td><%= review.created_at.strftime("%d/%m/%Y") %></td>
+
+                                <td>
+
+                                    <div class="is-flex is-justify-content-center mt-5">
+                                        <div class="buttons">
+                                            <%= button_to "Cancelar Reserva", review_path(review), data: { confirm: '¿Está seguro que desea eliminar la orden?' }, method: :delete, class: "button is-small is-rounded is-danger" %>
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    <% else %>
+        <div class="box mx-6 my-5 is-align-self-center">
+		    <div class="table-container is-flex is-justify-content-center">
+                <p> No hay Reseñas </p>
+            </div>
+        </div>
+
+    <% end %>
+
+<% else %>
+    <div class="box mx-6 my-5 is-align-self-center">
+        <div class="table-container is-flex is-justify-content-center">
+            <p> No has iniciado sesión </p>
+        </div>
+    </div>
+
+<% end %>

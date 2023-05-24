@@ -1,0 +1,24 @@
+<div id="chats">
+    <div class="content is-center has-text-centered is-size-3">
+        <h1>Chats</h1>
+    </div>
+    <div class="columns is-centered">
+        <div class="column is-one-third">
+            <% @chat.each do |chat| %>
+                <% if (current_user.moderator? && chat.moderator_id == current_user.id) || current_user.admin?%>
+                    <% user = User.find(chat.id_user)%>
+                    <div class="field is-grouped">
+                        <div class="control is-expanded">
+                            <button class="button is-medium" onclick="window.location.href='<%= chat_path(chat) %>'">
+                                <%= user.name %>
+                            </button>
+                        </div>
+                        <div class="control">
+                            <%= button_to "Delete chat", chat_path(chat.id), method: :delete, class: "button is-danger is-rounded"%>
+                        </div>
+                    </div>
+                <%end%>
+            <% end %>
+        </div>
+    </div>
+</div>

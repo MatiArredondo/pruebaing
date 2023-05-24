@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+
+  <p style="color: green"><%= notice %></p>
+
+  <% if current_user.admin? || current_user.moderator?%>
+    <%= render "index_admin" %>
+
+  </div>
+
+  <% elsif current_user.user? %>
+    <%= render "index_user" %>
+
+  <% end %>
+
+<% else %>
+  <meta http-equiv="refresh" content="0; url=/">
+
+<% end %>

@@ -1,0 +1,134 @@
+<% session[:hide_buttons] = true %>
+
+<div class="content is-center has-text-centered is-size-3">
+  <h1>Registrarse</h1>
+</div>
+
+<div class="box mx-6 my-6 is-align-self-center">
+
+	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {multipart: true}) do |f| %>
+
+		<div class="field">
+			<%= f.label :nombre, class: "label" %>
+			<div class="control has-icons-left has-icons-right">
+				<%= f.text_field :name, class: "input", placeholder: "Ingresa tu Nombre" %>
+				<span class="icon is-small is-left">
+					<i class="fas fa-user"></i>
+				</span>
+
+				<% if resource.errors[:name].any? %>
+					<p class="help is-danger"> No puede ser vacío </p>
+				<% end %>
+
+			</div>
+		</div>
+
+		<div class="field">
+			<%= f.label :email, class: "label" %>
+			<div class="control has-icons-left has-icons-right">
+				<%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input", placeholder: "Ingresa tu Email" %>
+				<span class="icon is-small is-left">
+					<i class="fas fa-envelope"></i>
+				</span>
+
+				<% if resource.errors[:email].any? %>
+					<p class="help is-danger"> No puede ser vacío </p>
+				<% end %>
+
+			</div>
+		</div>
+
+		<div class="field">
+			<%= f.label :contraseña, class: "label" %>
+			<div class="control has-icons-left has-icons-right">
+				<%= f.password_field :password, autocomplete: "new-password", class:"input", placeholder: "Ingresa tu Contraseña" %>
+				<span class="icon is-small is-left">
+					<i class="fas fa-lock"></i>
+				</span>
+			</div>
+			<% if @minimum_password_length %>
+				<em>(<%= @minimum_password_length %> caracteres mínimo)</em>
+			<% end %>
+
+			<% if resource.errors[:password].any? %>
+				<p class="help is-danger"> No puede ser vacío </p>
+			<% end %>
+
+		</div>
+
+		<div class="field">
+			<%= f.label :confirmar_contraseña, class: "label" %>
+			<div class="control has-icons-left has-icons-right">
+				<%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input", placeholder: "Confirma tu Contraseña" %>
+					<span class="icon is-small is-left">
+				<i class="fas fa-lock"></i>
+				</span>
+
+				<% if resource.errors[:password].include?("can't be blank")%>
+					<p class="help is-danger"> No puede ser vacío </p>
+
+				<% end %>
+
+			</div>
+		</div>
+
+		<div class="field">
+			<%= f.label :teléfono, class: "label" %>
+			<div class="control has-icons-left has-icons-right">
+				<%= f.text_field :cellphone, class: "input", placeholder: "Ingresa tu Teléfono" %>
+				<span class="icon is-small is-left">
+					<i class="fas fa-phone"></i>
+				</span>
+
+				<% if resource.errors[:cellphone].include?("can't be blank") %>
+					<p class="help is-danger"> No puede ser vacío </p>
+
+				<% elsif resource.errors[:cellphone].include?("is the wrong length (should be 9 characters)") %>
+					<p class="help is-danger"> Tiene que ser de 9 caracteres </p>
+
+				<% end %>
+
+
+			</div>
+		</div>
+
+		<div class="field">
+			<%= f.label :descripción, class:"label" %>
+			<div class="control">
+				<%= f.text_area :description, class: "textarea", placeholder: "Textarea"%>
+			</div>
+		</div>
+
+		<div class="file has-name">
+			<label class="file-label">
+				<%= f.file_field :images_path, class: "file-input" %>
+				<span class="file-cta">
+					<span class="file-icon">
+						<i class="fas fa-upload"></i>
+					</span>
+					<span class="file-label">
+						Foto de Perfil
+					</span>
+				</span>
+			</label>
+		</div>
+
+    <br>
+
+		<div class="field is-grouped">
+			<div class="control">
+				<%= f.submit "Registrarse", class: "button is-link" %>
+			</div>
+
+			<div class="control">
+				<%= render "devise/shared/links" %>
+			</div>
+
+			<div class="control">
+				<%= link_to "Volver", "/", class: "button is-link is-light" %>
+			</div>
+		</div>
+
+  <% end %>
+
+</div>

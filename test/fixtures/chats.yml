@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+chat_1:
+  id_user:
+  moderator_id:
+
+chat_2:
+  id_user: 1
+  moderator_id: 1
+
+chat_3:
+  id_user: 1
+  moderator_id:

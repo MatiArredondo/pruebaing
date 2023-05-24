@@ -1,0 +1,45 @@
+<nav>
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+
+
+            <% if current_user.images_path.attached? %>
+
+                <div class="navbar-brand">
+                    <figure class="navbar-item image is-rounded">
+                        <%= image_tag current_user.images_path, class:"is-rounded is-64x64 has-background-white" %>
+                    </figure>
+                </div>
+
+            <% else %>
+
+                <div class="navbar-brand">
+                    <figure class="navbar-item image is-rounded">
+                        <img class="is-rounded is-64x64 has-background-white" src="https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png">
+                    </figure>
+                </div>
+
+            <% end %>
+
+                <%= link_to current_user.name, edit_user_registration_path, class: "navbar-item" %>
+
+            <% if current_user.admin? || current_user.moderator? %>
+                <%= render "layouts/nav_admin" %>
+
+            <% elsif current_user.user? %>
+                <%= render "layouts/nav_user"%>
+
+            <% end %>
+
+            </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <%= button_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "button is-primary"%>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

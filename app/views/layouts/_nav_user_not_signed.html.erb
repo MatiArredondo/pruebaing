@@ -1,0 +1,17 @@
+<nav>
+    <div class="navbar-end">
+        <div class="navbar-item">
+            <% unless session[:hide_buttons] %>
+                <div class="buttons">
+
+                    <%= link_to new_user_registration_path, class: "button is-primary" do %>
+                        <strong>Registrarse</strong>
+                    <% end %>
+
+                    <%= link_to "Inicar Sesión", new_user_session_path, class: "button is-light" %>
+
+                </div>
+            <% end %>
+        </div>
+    </div>
+</nav>

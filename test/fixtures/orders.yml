@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_product: 1
+  status: MyText
+  description: MyText
+  order_date: 2023-04-16
+
+two:
+  id_product: 1
+  status: MyText
+  description: MyText
+  order_date: 2023-04-16

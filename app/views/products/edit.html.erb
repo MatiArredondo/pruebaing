@@ -1,0 +1,41 @@
+<% if user_signed_in? %>
+
+	<%if current_user.admin?%>
+
+		<div class="content is-center has-text-centered is-size-5 mt-5">
+			<h2>Editar Producto</h2>
+		</div>
+
+		<div class="is-flex is-justify-content-center mt-5">
+			<div class="buttons">
+
+				<%= link_to products_path, class: "button is-outlined" do %>
+					<span class="icon is-small">
+						<i class="fas fa-arrow-left"></i>
+					</span>
+
+					<span>
+						<p> Volver a Productos </p>
+					</span>
+
+				<% end %>
+
+				<%= link_to @product, class: "button is-outlined" do %>
+					<span class="icon is-small">
+						<i class="fas fa-eye"></i>
+					</span>
+				<% end %>
+
+			</div>
+		</div>
+
+		<%= render "form", product: @product %>
+
+	<% end %>
+
+<% else %>
+  	<div class="box mx-6 my-6 is-align-self-center">
+		<p> No has iniciado sesión <p>
+	</div>
+
+<% end %>

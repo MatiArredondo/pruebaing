@@ -1,0 +1,16 @@
+<%if user_signed_in?%>
+  <div class="content is-center has-text-centered is-size-3">
+    <h1>Creando un Chat</h1>
+  </div>
+  <div class="content is-center has-text-centered is-size-6">
+    <h1>Seleccione un Moderador al cual contactar</h1>
+  </div>
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+      <%= render "form", chat: @chat%>
+    </div>
+  </div>
+<%else%>
+  <meta http-equiv="refresh" content="0; url=/">
+
+<% end %>

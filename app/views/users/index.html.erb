@@ -1,0 +1,52 @@
+<% if user_signed_in? %>
+
+	<div class="content is-center has-text-centered is-size-5 mt-5">
+		<h2>Usuarios</h2>
+	</div>
+
+	<% if !@users.nil? %>
+
+		<div class="box mx-6 my-5 is-align-self-center">
+			<div class="table-container is-flex is-justify-content-center">
+				<table class="table is-fullwidth">
+
+
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Email</th>
+							<th>Role</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<% @users.each do |users| %>
+						<tr>
+							<td><%= users.name %></td>
+							<td><%= users.email %></td>
+							<td><%= users.role %></td>
+
+							<% if current_user.admin? %>
+								<td>
+									<div class="buttons">
+										<%= button_to "Eliminar", users, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "button is-danger" %>
+									</div>
+								</td>
+							<% end %>
+						</tr>
+						<% end %>
+						</tbody>
+				</table>
+			</div>
+		</div>
+
+	<% else %>
+			<p> No hay Usuarios </p>
+
+	<% end %>
+
+<% else %>
+  	<p> No has inciado sesión </p>
+
+<% end %>

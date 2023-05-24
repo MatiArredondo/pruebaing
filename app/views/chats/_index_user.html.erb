@@ -1,0 +1,21 @@
+<div class="content is-center has-text-centered is-size-3">
+  <h1>Chats</h1>
+</div>
+<div class="columns is-centered">
+  <div class="column is-one-third">
+    <% @chat.each do |chat| %>
+      <% if chat.id_user == current_user.id %>
+        <div class="has-text-centered">
+          <button class="button is-medium" onclick="window.location.href='<%= chat_path(chat) %>'">
+            <%moderador = User.find(chat.moderator_id)%>
+            <%= moderador.name %>
+          </button>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="has-text-centered">
+      <%= link_to "New Chat", new_chat_path, class: "button is-primary is-rounded" %>
+    </div>
+  </div>
+</div>
+

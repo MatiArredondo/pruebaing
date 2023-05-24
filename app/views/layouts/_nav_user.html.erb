@@ -1,0 +1,9 @@
+<%= link_to "Mis Reservas", order_path(current_user.id), class: "navbar-item" %>
+
+<%= link_to "Mis Reseñas", reviews_path, class: "navbar-item" %>
+
+<%= link_to "Productos", products_path, class: "navbar-item" %>
+
+<%= link_to "Chats", chats_path, class: "navbar-item" %>
+
+<%= link_to 'Danos tu opinion', new_review_path(id_product: -1, id_order: -1), class: "navbar-item" %>

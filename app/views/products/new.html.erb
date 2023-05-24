@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+
+  <%if current_user.admin? || current_user.moderator?%>
+
+    <div class="content is-center has-text-centered is-size-5 mt-5">
+			<h1> Nuevo Producto </h1>
+		</div>
+
+    <%= render "form", product: @product %>
+
+  <% end %>
+
+<% else %>
+  <p> No has inciado sesión </p>
+
+<% end %>

@@ -1,0 +1,82 @@
+<% if user_signed_in? %>
+
+	<p style="color: green"><%= notice %></p>
+
+	<% if current_user.admin? || current_user.moderator? %>
+		<div class="is-flex is-justify-content-center mt-5">
+			<div class="buttons">
+
+				<%= link_to edit_product_path(@product), class: "button is-rounded is-primary" do %>
+					<span class="icon is-small">
+						<i class="fas fa-edit"></i>
+					</span>
+				<% end %>
+
+				<%= button_to @product, method: :delete, class: "button is-rounded is-danger" do %>
+					<span class="icon is-small">
+						<i class="fas fa-trash" style="color: #ffffff;"></i>
+					</span>
+				<% end %>
+
+			</div>
+		</div>
+
+	<% end %>
+
+	<div class="box mx-6 my-5 is-align-self-center">
+		<div class="table-container is-flex is-justify-content-center">
+			<table class="table is-fullwidth">
+
+				<tr>
+					<td><b>Imagen:</b></td>
+					<td>
+						<% if @product.image.attached? %>
+
+							<figure class="image is-96x96">
+								<%= image_tag @product.image, class:"is-96x96 has-background-white" %>
+							</figure>
+
+						<% else %>
+
+							<figure class="image is-96x96">
+								<i class="fa-thin fa-image"></i>
+							</figure>
+
+						<% end %>
+					</td>
+				<tr>
+				<tr>
+					<td><b>Producto:</b></td>
+					<td><i><%= @product.name %></i></td>
+				<tr>
+				<tr>
+					<td><b>Precio:</b></td>
+					<td><i><%= @product.price %></i></td>
+				<tr>
+
+			</table>
+		</div>
+	<div>
+
+		<% if current_user.user? %>
+
+			<div class="is-flex is-justify-content-center mt-5">
+				<div class="buttons">
+
+					<%= button_to "Solicitar Producto", orders_path(order: { id_product: @product.id, id_user: current_user.id,
+							order_date: Date.today.strftime("%d/%m/%Y"), status: "pending" }), method: :post,
+							class: "button is-rounded is-primary" %>
+
+				</div>
+			</div>
+
+		<% end %>
+
+	</div>
+
+<% else %>
+  	<div class="box mx-6 my-6 is-align-self-center">
+		<p> No has iniciado sesión <p>
+	</div>
+
+<% end %>

@@ -1,0 +1,15 @@
+<%= form_with(model: @review) do |form| %>
+  <br/>
+  <%= form.hidden_field :id_user, value: current_user.id %>
+  <% if @product == "-1" %>
+    <%= form.hidden_field :id_product, value: -1 %>
+  <% else %>
+    <%= form.hidden_field :id_product, value: @product.id %>
+  <% end %>
+  <%= form.label :content %>
+  <%= form.text_area :content %>
+  <%= form.label :grade %>
+  <%= form.number_field :grade, min: 0, max: 10 %>
+  <br/>
+  <%= form.submit class:"button" %>
+<% end %>

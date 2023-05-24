@@ -1,0 +1,13 @@
+<%= form_with(model: @chat, url: chats_path, local: true) do |form| %>
+  <%= form.hidden_field :id_user, value: current_user.id %>
+  <div class="field is-grouped">
+    <div class="control is-expanded">
+      <div class="select is-rounded">
+        <%= form.select :moderator_id, options_for_select(@users.select { |user| user.moderator? || user.admin? }.map { |user| [user.name, user.id] }) %>
+      </div>
+    </div>
+    <div class="control">
+      <%= form.submit "Crear Chat", class: "button is-primary is-rounded" %>
+    </div>
+  </div>
+<% end %>
